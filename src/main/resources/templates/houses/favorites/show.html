@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+
+	<div th:replace="~{fragment :: styles}"></div>
+
+	<!-- Flatpickr -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+	<title>お気に入り一覧</title>
+</head>
+
+<body>
+	<div class="samuraitravel-wrapper">
+		<!-- ヘッダー -->
+		<div th:replace="~{fragment :: header}"></div>
+
+		<main>
+			<div class="container pt-4 pb-5 samuraitravel-container">
+				<div class="row justify-content-center">
+					<div class="col-xxl-9 col-xl-10 col-lg-11">
+						<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+								<li class="breadcrumb-item active" aria-current="page">お気に入り一覧</li>
+							</ol>
+						</nav>
+
+						<tbody>
+							
+								<h1 class="mb-4 text-center" th:text="${userName}"></h1>	<h1 class="mb-4 text-center" th:text="お気に入り一覧"> </h1>
+							
+
+							</tr>
+						</tbody>
+
+						<div th:if="${errorMessage}" class="alert alert-danger">
+							<span th:text="${errorMessage}"></span>
+						</div>
+
+
+						<div>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>宿の名前</th>
+										<th>住所</th>
+										<th>価格</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									<tr th:each="favorite: ${favorites}">
+									<td th:text = "${favorite.houseid.name}"></td>   
+									<td th:text="${favorite.houseid.address}"></td>
+									<td th:text="${favorite.houseid.price}"></td>
+									
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	</main>
+
+	<!-- フッター -->
+	<div th:replace="~{fragment :: footer}"></div>
+	</div>
+
+	<div th:replace="~{fragment :: scripts}"></div>
+
+	<!-- Flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+	<script th:src="@{/js/flatpickr.js}"></script>
+
+
+</body>
+
+</html>
